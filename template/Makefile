@@ -1,9 +1,10 @@
 ###############################################################################
-#   makefile
-#    by Alex Chadwick
+#	makefile
+#	 by Alex Chadwick
 #
-#   A makefile script for generation of raspberry pi kernel images.
+#	A makefile script for generation of raspberry pi kernel images.
 ###############################################################################
+
 # The toolchain to use. arm-none-eabi works, but there does exist 
 # arm-bcm2708-linux-gnueabi.
 ARMGNU ?= arm-none-eabi
@@ -38,26 +39,26 @@ rebuild: all
 
 # Rule to make the listing file.
 $(LIST) : $(BUILD)output.elf
-   $(ARMGNU)-objdump -d $(BUILD)output.elf > $(LIST)
+	$(ARMGNU)-objdump -d $(BUILD)output.elf > $(LIST)
 
 # Rule to make the image file.
 $(TARGET) : $(BUILD)output.elf
-   $(ARMGNU)-objcopy $(BUILD)output.elf -O binary $(TARGET) 
+	$(ARMGNU)-objcopy $(BUILD)output.elf -O binary $(TARGET) 
 
 # Rule to make the elf file.
 $(BUILD)output.elf : $(OBJECTS) $(LINKER)
-   $(ARMGNU)-ld --no-undefined $(OBJECTS) -Map $(MAP) -o $(BUILD)output.elf -T $(LINKER)
+	$(ARMGNU)-ld --no-undefined $(OBJECTS) -Map $(MAP) -o $(BUILD)output.elf -T $(LINKER)
 
 # Rule to make the object files.
 $(BUILD)%.o: $(SOURCE)%.s $(BUILD)
-   $(ARMGNU)-as -I $(SOURCE) $< -o $@
+	$(ARMGNU)-as -I $(SOURCE) $< -o $@
 
 $(BUILD):
-   mkdir $@
+	mkdir $@
 
 # Rule to clean files.
 clean : 
-   -rm -rf $(BUILD)
-   -rm -f $(TARGET)
-   -rm -f $(LIST)
-   -rm -f $(MAP)
+	-rm -rf $(BUILD)
+	-rm -f $(TARGET)
+	-rm -f $(LIST)
+	-rm -f $(MAP)
