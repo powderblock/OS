@@ -7,7 +7,7 @@ Disassembly of section .init:
 00008000 <_start>:
     8000:	e59f0018 	ldr	r0, [pc, #24]	; 8020 <loop$+0x4>
     8004:	e3a01001 	mov	r1, #1
-    8008:	e1a01981 	lsl	r1, r1, #19
+    8008:	e1a01901 	lsl	r1, r1, #18
     800c:	e5801004 	str	r1, [r0, #4]
     8010:	e3a01001 	mov	r1, #1
     8014:	e1a01801 	lsl	r1, r1, #16
